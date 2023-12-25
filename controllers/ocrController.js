@@ -11,13 +11,12 @@ const imageAnnotatorClient = new ImageAnnotatorClient();
 
 const extractInfo = async (req, res) => {
   try {
+    console.log("hello")
     if (!req.file) {
       console.log("I was here");
       return res.status(400).json({ error: "No image uploaded." });
     }
-
     const imageBuffer = req.file.buffer;
-
     try {
       const [result] = await imageAnnotatorClient.textDetection(imageBuffer);
       const text = result.fullTextAnnotation.text;
