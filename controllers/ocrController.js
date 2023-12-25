@@ -52,7 +52,7 @@ const getTextFromImage = async (imageData) => {
 
     const parts = [
       {
-        text: "Extract the following details from the Thai ID Card provided - Identification Number, first name, last name, Date of Birth, Date of Issue, Expiry Date. Provide in JSON format as {identificationNumber: , firstName: , lastName: , dob: ,doi: ,doe: }",
+        text: 'Please extract the following information from the Thai ID Card provided and format it as JSON:Identification Number,Name,LastName,Date of Birth (in "DD-MM-YYYY" format),Date of Issue (in "DD-MM-YYYY" format),Date of Expiry (in DD-MM-YYYY" format). Example Output:{"identification_number": "4 7363 39613 02 7",            "name": "Mr. Rotngern","last_name": "Yoopm","date-of-birth": "31/03/2006","date-of-issue": "15/09/2020","date-of-expiry": "05/02/2026"}.Additional Considerations: - Name should be in English Only.- If identification number or name or last name is not mentioned or sure use "unknown". This number if of 13 digits.- Date of expiry is always later than date of issue, it can be "lifelong" also. Use "/" as the format like 30/12/23 not "-" like 30-12-23.- Handle potential variations in text formatting and OCR errors gracefully.- Consider using regular expressions or other language-specific tools for accurate extraction.- Ensure proper handling of Thai characters and date formats.- If not sure about any of the data, then mention "unknown" in that. RETURN WITH THE JSON ONLY!!!'
       },
       {
         inlineData: {
@@ -77,34 +77,34 @@ const getTextFromImage = async (imageData) => {
 //     const prompt = `
 //       I'm working on a project that involves extracting information from Thai National ID cards. I've used OCR to extract text from a card image, and here's the resulting text:
 //       ${ocrText}
-//       Please extract the following information from the text and format it as JSON:
+      // Please extract the following information from the text and format it as JSON:
   
-//       Identification Number
-//       Name
-//       Last Name
-//       Date of Birth (in "DD-MM-YYYY" format)
-//       Date of Issue (in "DD-MM-YYYY" format)
-//       Date of Expiry (in "DD-MM-YYYY" format)
+      // Identification Number
+      // Name
+      // Last Name
+      // Date of Birth (in "DD-MM-YYYY" format)
+      // Date of Issue (in "DD-MM-YYYY" format)
+      // Date of Expiry (in "DD-MM-YYYY" format)
   
-//       Example Output:
-//       {
-//           "identification_number": "4 7363 39613 02 7",
-//           "name": "Mr. Rotngern",
-//           "last_name": "Yoopm",
-//           "date-of-birth": "31/03/2006",
-//           "date-of-issue": "15/09/2020",
-//           "date-of-expiry": "05/02/2026"
-//       }
-//       Additional Considerations:
-//       - Name should be in English Only.
-//       - If identification number or name or last name is not mentioned or sure use "unknown". This number if of 13 digits.
-//       - Date of expiry is always later than date of issue, it can be "lifelong" also. Use "/" as the format like 30/12/23 not "-" like 30-12-23.
-//       - Handle potential variations in text formatting and OCR errors gracefully.
-//       - Consider using regular expressions or other language-specific tools for accurate extraction.
-//       - Ensure proper handling of Thai characters and date formats.
-//       - If not sure about any of the data, then mention "unknown" in that.
+      // Example Output:
+      // {
+      //     "identification_number": "4 7363 39613 02 7",
+      //     "name": "Mr. Rotngern",
+      //     "last_name": "Yoopm",
+      //     "date-of-birth": "31/03/2006",
+      //     "date-of-issue": "15/09/2020",
+      //     "date-of-expiry": "05/02/2026"
+      // }
+      // Additional Considerations:
+      // - Name should be in English Only.
+      // - If identification number or name or last name is not mentioned or sure use "unknown". This number if of 13 digits.
+      // - Date of expiry is always later than date of issue, it can be "lifelong" also. Use "/" as the format like 30/12/23 not "-" like 30-12-23.
+      // - Handle potential variations in text formatting and OCR errors gracefully.
+      // - Consider using regular expressions or other language-specific tools for accurate extraction.
+      // - Ensure proper handling of Thai characters and date formats.
+      // - If not sure about any of the data, then mention "unknown" in that.
       
-//       RETURN WITH THE JSON ONLY!!!
+      // RETURN WITH THE JSON ONLY!!!
 //     `;
   
 //     const result = await model.generateContent(prompt);
